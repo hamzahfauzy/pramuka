@@ -10,14 +10,14 @@ if(request() == 'POST')
 
     // validasi gugus depan
     Validation::run([
-        'gugus_depan' => [
-            'required','exists:sekolah,gugus_depan,'.$_POST['gugus_depan']
-        ],
+        // 'gugus_depan' => [
+        //     'required','exists:sekolah,gugus_depan,'.$_POST['gugus_depan']
+        // ],
         'username' => [
             'required','unique:users'
         ]
     ],[
-        'gugus_depan' => $_POST['gugus_depan'],
+        // 'gugus_depan' => $_POST['gugus_depan'],
         'username' => $_POST['username'],
     ]);
 
@@ -33,26 +33,18 @@ if(request() == 'POST')
         'role_id' => 3,
     ]);
 
-    $sekolah = $db->single('sekolah',['gugus_depan'=>$_POST['gugus_depan']]);
+    // $sekolah = $db->single('sekolah',['gugus_depan'=>$_POST['gugus_depan']]);
 
     $db->insert('biodata',[
         'user_id' => $user->id,
         'nama' => $_POST['nama'],
         'no_hp' => $_POST['no_hp'],
-        'asal_sekolah' => $sekolah->nama,
+        // 'asal_sekolah' => $sekolah->nama,
     ]);
 
     set_flash_msg(['success'=>'Registrasi berhasil! Silahkan hubungi admin ranting untuk proses verifikasi']);
     header('location:'.routeTo('auth/login'));
     die();
-    
-    // if($user)
-    // {
-    // }
-
-    // set_flash_msg(['error'=>'Login Gagal! Nama Pengguna atau Kata Sandi tidak cocok']);
-    // header('location:'.routeTo('auth/login'));
-    // die();
 }
 
 return [

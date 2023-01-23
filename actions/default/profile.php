@@ -11,24 +11,32 @@ $success_msg = get_flash_msg('success');
 
 if(request() == 'POST')
 {
-    if(isset($_POST['biodata']))
-    {
-        $db->update('biodata',$_POST['biodata'],[
-            'user_id' => auth()->user->id
-        ]);
-        set_flash_msg(['success'=>'Biodata berhasil diupdate']);
-    }
+    if(empty($_POST['users']['password']))
+        $_POST['users']['password'] = $data->password;
     else
+        $_POST['users']['password'] = md5($_POST['users']['password']);
+
+    if(!empty($_FILES['pic_url']))
     {
-        if(empty($_POST['users']['password']))
-            $_POST['users']['password'] = $data->password;
-        else
-            $_POST['users']['password'] = md5($_POST['users']['password']);
-        $db->update('users',$_POST['users'],[
-            'id' => auth()->user->id
-        ]);
-        set_flash_msg(['success'=>'Profil berhasil diupdate']);
+        $_POST['users']['pic_url'] = do_upload($_FILES['pic_url'],'uploads');
     }
+
+    $db->update('users',$_POST['users'],[
+        'id' => auth()->user->id
+    ]);
+    set_flash_msg(['success'=>'Profil berhasil diupdate']);
+    
+    // if(isset($_POST['biodata']))
+    // {
+    //     $db->update('biodata',$_POST['biodata'],[
+    //         'user_id' => auth()->user->id
+    //     ]);
+    //     set_flash_msg(['success'=>'Biodata berhasil diupdate']);
+    // }
+    // else
+    // {
+        
+    // }
 
     header('location:'.routeTo('default/profile'));
 }

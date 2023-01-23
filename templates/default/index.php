@@ -9,6 +9,7 @@
                 </div>
             </div>
         </div>
+        <?php if(get_role(auth()->user->id)->name != 'User'): ?>
         <div class="page-inner mt--5">
             <div class="row mt--2">
                 <div class="col-sm-6 col-md-4">
@@ -70,5 +71,18 @@
                 </div>
             </div>
         </div>
+        <?php else: ?>
+        <div class="page-inner mt--5">
+            <div class="row mt--2">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>Selamat datang di aplikasi pendataan pramuka</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif ?>
     </div>
 <?php load_templates('layouts/bottom') ?>

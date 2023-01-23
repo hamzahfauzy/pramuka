@@ -46,8 +46,10 @@
                                 <input type="text" name="nama" id="" class="form-control mb-2" placeholder="Nama Disini...">
                                 <label for="">Kwartir Ranting</label>
                                 <?= Form::input('options-obj:ranting,id,nama', 'ranting_id', ['class'=>"form-control mb-2","placeholder"=>'Kwartir Ranting']) ?>
+                                <?php /*
                                 <label for="">No. Gugus Depan</label>
                                 <input type="text" name="gugus_depan" id="" class="form-control mb-2" placeholder="Nama Disini...">
+                                */ ?>
                                 <label for="">Nama Pengguna</label>
                                 <input type="text" name="username" id="" class="form-control mb-2" placeholder="Nama Pengguna Disini...">
                                 <label for="">Kata Sandi</label>

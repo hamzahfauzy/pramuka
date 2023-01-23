@@ -5,6 +5,7 @@ return [
     'master'  => 'fas fa-cubes',
     'biodata'  => 'fas fa-user',
     'sekolah'  => 'fas fa-school',
+    'kepramukaan'  => 'fas fa-door-closed',
     'pramuka'  => 'fas fa-door-closed',
     'sertifikat'  => 'fas fa-file-alt',
     'admin'  => 'fas fa-users',

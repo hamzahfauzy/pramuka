@@ -13,6 +13,7 @@
                 </div>
             </div>
         </div>
+
         <div class="page-inner mt--5">
             <div class="row row-card-no-pd">
                 <div class="col-md-12">
@@ -21,24 +22,28 @@
                             <?php if($success_msg): ?>
                             <div class="alert alert-success"><?=$success_msg?></div>
                             <?php endif ?>
-                            <h2>Profil</h2>
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <h2>Biodata</h2>
+                            <form action="" method="post">
+                                <?php 
+                                foreach($fields as $key => $field): 
+                                    $label = $field;
+                                    $type  = "text";
+                                    if(is_array($field))
+                                    {
+                                        $field_data = $field;
+                                        $field = $key;
+                                        $label = $field_data['label'];
+                                        if(isset($field_data['type']))
+                                        $type  = $field_data['type'];
+                                    }
+                                    $label = _ucwords($label);
+                                    $fieldname = $type == 'file' ? $field : $table."[".$field."]";
+                                ?>
                                 <div class="form-group">
-                                    <label for="">Nama</label>
-                                    <input type="text" name="users[name]" class="form-control" value="<?=$data->name?>" required>
+                                    <label for=""><?=$label?></label>
+                                    <?= Form::input($type, $fieldname, ['class'=>"form-control","placeholder"=>$label,"value"=>$old[$field]??$data->biodata->{$field}]) ?>
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Username</label>
-                                    <input type="text" name="users[username]" class="form-control" value="<?=$data->username?>" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Kata Sandi</label>
-                                    <input type="password" name="users[password]" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Foto Profil</label>
-                                    <input type="file" name="pic_url" class="form-control">
-                                </div>
+                                <?php endforeach ?>
                                 <div class="form-group">
                                     <button class="btn btn-primary">Submit</button>
                                 </div>

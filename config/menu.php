@@ -2,7 +2,7 @@
 
 return [
     'dashboard' => 'default/index',
-    'biodata' => 'default/profile',
+    'biodata' => 'biodata',
     'master' => [
         'daerah' => 'crud/index?table=daerah',
         'cabang' => 'crud/index?table=cabang',
@@ -10,6 +10,7 @@ return [
     ],
     'sekolah' => 'crud/index?table=sekolah',
     'pramuka' => 'crud/index?table=pramuka',
+    'kepramukaan' => 'pramuka/index',
     'sertifikat' => 'crud/index?table=sertifikat',
     'admin' => 'users/admin',
     'user'  =>  'users/user',

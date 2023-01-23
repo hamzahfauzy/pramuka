@@ -2,7 +2,7 @@
 
 if(get_role(auth()->user->id)->name == 'Admin')
 {
-    $where = ($where == '' ? 'WHERE ' : ' AND ') . ' ranting_id='.auth()->user->ranting_id;
+    $where = ($where == '' ? 'WHERE ' : ' AND ') . ' user_id IN (SELECT id FROM users WHERE ranting_id='.auth()->user->ranting_id.')';
 }
 
 if(get_role(auth()->user->id)->name == 'User')

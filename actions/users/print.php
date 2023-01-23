@@ -10,7 +10,7 @@ $user = $db->single('users',[
 
 $user->biodata = $db->single('biodata',['user_id'=>$user->id]);
 
-$path = 'assets/img/user-placeholder.png';
+$path = $user->pic_url ?? 'assets/img/user-placeholder.png';
 $type = pathinfo($path, PATHINFO_EXTENSION);
 $data_logo = file_get_contents($path);
 $logo = 'data:image/' . $type . ';base64,' . base64_encode($data_logo);

@@ -190,7 +190,12 @@ class Database
     {
         if(is_string($clause))
         {
-            return str_replace("WHERE","",$clause);
+            $where_finder = substr($clause, 0, 5);
+            if(strtolower($where_finder) == 'where')
+            {
+                return substr($clause, 6);
+            }
+            return $clause;
         }
         $logic = "AND";
         $count_clause = count($clause);
