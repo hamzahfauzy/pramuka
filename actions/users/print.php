@@ -9,6 +9,13 @@ $user = $db->single('users',[
 ]);
 
 $user->biodata = $db->single('biodata',['user_id'=>$user->id]);
+$user->pramuka = $db->single('pramuka',['user_id'=>$user->id]);
+if($user->pramuka)
+{
+    $user->pramuka->ranting = $db->single('ranting',['id'=>$user->pramuka->ranting_id]);
+    $user->pramuka->cabang = $db->single('cabang',['id'=>$user->pramuka->cabang_id]);
+    $user->pramuka->daerah = $db->single('daerah',['id'=>$user->pramuka->daerah_id]);
+}
 
 $path = $user->pic_url ?? 'assets/img/user-placeholder.png';
 $type = pathinfo($path, PATHINFO_EXTENSION);
@@ -28,8 +35,6 @@ ob_start();
 require 'template/print.php';
 $html = ob_get_contents(); 
 ob_end_clean();
-
-// echo $html;
 
 $html2pdf = new Html2Pdf();
 $html2pdf->writeHTML($html);
