@@ -52,7 +52,7 @@
                                                 <a href="<?=routeTo('users/detail',['id'=>$data->id])?>" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> Biodata</a>
                                                 */ ?>
                                                 <?php if(is_allowed(get_route_path('users/print',[]),auth()->user->id)): ?>
-                                                <a href="<?=routeTo('users/print',['id'=>$data->id])?>" class="btn btn-sm btn-primary"><i class="fas fa-print"></i> Cetak</a>
+                                                <a href="<?=routeTo('users/print',['id'=>$data->id])?>" class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-print"></i> Cetak</a>
                                                 <?php endif ?>
                                                 <?php if(!$data->verification_at): ?>
                                                 <a href="<?=routeTo('users/verification',['id'=>$data->id])?>" class="btn btn-sm btn-success"><i class="fas fa-user-check"></i> Verifikasi</a>

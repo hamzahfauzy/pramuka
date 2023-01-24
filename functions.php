@@ -154,8 +154,20 @@ function generated_menu($user_id)
         else
         {
             if($user_id != 'guest' && !is_allowed($route,$user_id)) continue;
-            $start_route = str_replace('/index','',$route);
-            $active = startWith($r, $start_route)||(isset($_GET['table'])&&$_GET['table']==$key);;
+            $base_route  = explode('?',$route);
+            $start_route = str_replace('/index','',$base_route[0]);
+            $url = routeTo('') . $route;
+            $url = parse_url($url);
+            $table = '';
+            if(isset($url['query']))
+            {
+                parse_str($url['query'], $params); 
+                $table = isset($params['table']) ? $params['table'] : '';
+            }
+            // echo $key . ' ' . $r . ' ' . $route . ' | ';
+            $active = ($start_route != 'crud' ? startWith($r, $start_route) : (isset($_GET['table'])&&($_GET['table']==$key||$_GET['table']==$table)));
+
+            if($key == 'biodata' && get_role($user_id)->name != 'User') continue;
 
             if($key == 'tindak lanjut permasalahan')
             {
@@ -619,10 +631,10 @@ function asset($file)
     return url() . '/' .$file;
 }
 
-function get_route_path($path, $params)
+function get_route_path($path, $params = false)
 {
     $pretty = config('pretty_url');
-    $fullpath = $path . ($pretty ? '?' : '&') . http_build_query($params);
+    $fullpath = $path . ($params ? ($pretty ? '?' : '&') . http_build_query($params) : '');
     return $fullpath;
 }
 

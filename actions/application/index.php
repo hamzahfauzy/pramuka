@@ -8,6 +8,11 @@ $success_msg = get_flash_msg('success');
 
 if(request() == 'POST')
 {
+    if(!empty($_FILES['kta_bg']))
+    {
+        $_POST['app']['kta_bg'] = do_upload($_FILES['kta_bg'],'uploads');
+    }
+
     $db->update('application',$_POST['app'],[
         'id' => $data->id
     ]);

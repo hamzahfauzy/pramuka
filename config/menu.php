@@ -8,6 +8,7 @@ return [
         'cabang' => 'crud/index?table=cabang',
         'ranting' => 'crud/index?table=ranting',
     ],
+    'list biodata' => 'crud/index?table=biodata',
     'sekolah' => 'crud/index?table=sekolah',
     'pramuka' => 'crud/index?table=pramuka',
     'kepramukaan' => 'pramuka/index',
@@ -18,5 +19,5 @@ return [
     //     'semua pengguna' => 'users/index',
     //     'roles' => 'roles/index'
     // ],
-    // 'pengaturan' => 'application/index'
+    'pengaturan' => 'application/index'
 ];

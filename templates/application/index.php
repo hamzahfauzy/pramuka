@@ -21,7 +21,7 @@
                             <?php if($success_msg): ?>
                             <div class="alert alert-success"><?=$success_msg?></div>
                             <?php endif ?>
-                            <form action="" method="post">
+                            <form action="" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="app[id]" value="<?=$data->id?>">
                                 <div class="form-group">
                                     <label for="">Nama</label>
@@ -37,7 +37,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">E-Mail</label>
-                                    <input type="email" name="app[email]" class="form-control" value="<?=$data->email?>">
+                                    <input type="text" name="app[email]" class="form-control" value="<?=$data->email?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Background KTA <?=$data->kta_bg?'( <a href="'.routeTo($data->kta_bg).'" target="_blank">Lihat</a> )':''?></label>
+                                    <input type="file" name="kta_bg" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary">Submit</button>

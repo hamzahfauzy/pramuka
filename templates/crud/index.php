@@ -11,6 +11,14 @@
                         <?php if(is_allowed(get_route_path('crud/create',['table'=>$table]),auth()->user->id)): ?>
                             <a href="<?=routeTo('crud/create',['table'=>$table])?>" class="btn btn-secondary btn-round">Buat <?=_ucwords(__($table))?></a>
                         <?php endif ?>
+
+                        <?php if(is_allowed(get_route_path('biodata/export'),auth()->user->id) && $table == 'biodata'): ?>
+                            <a href="<?=routeTo('biodata/export')?>" class="btn btn-success btn-round">Export</a>
+                        <?php endif ?>
+                        
+                        <?php if(is_allowed(get_route_path('pramuka/export'),auth()->user->id) && $table == 'pramuka'): ?>
+                            <a href="<?=routeTo('pramuka/export')?>" class="btn btn-success btn-round">Export</a>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>

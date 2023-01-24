@@ -1,7 +1,7 @@
 <?php
 
 header("Content-type: application/vnd-ms-excel");
-header("Content-Disposition: attachment; filename=pramuka_".strtotime('now').".xls");
+header("Content-Disposition: attachment; filename=data_user_".strtotime('now').".xls");
 
 $conn = conn();
 $db   = new Database($conn);
